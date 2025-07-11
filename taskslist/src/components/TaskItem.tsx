@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router'
-
 export type Task = {
   id: number
   title: string
@@ -9,21 +7,30 @@ export type Task = {
 
 type Props = {
   task: Task
-  onDelete: (id:number) => void
+  onEdit: () => void
+  onDelete: () => void
 }
 
-export default function TaskItem({ task, onDelete }: Props) {
-  const router = useRouter()
+export default function TaskItem({ task, onEdit, onDelete }: Props) {
 
   return (
     <div>
-      <h3>{task.title}</h3>
+      <div>
+        <h2>{task.title}</h2>
+        <span>
+          {task.completed ? 'Completada' : 'Pendiente'}
+        </span>
+      </div>
       <p>{task.description}</p>
       <div>
-        <button onClick={() => router.push(`/tasks/${task.id}`)}>
+        <button 
+          onClick={onEdit}
+        >
           Editar
         </button>
-        <button onClick={() => onDelete(task.id)}>
+        <button 
+          onClick={onDelete}
+        >
           Eliminar
         </button>
       </div>
