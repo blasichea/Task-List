@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const taskId = parseInt(id)
-
+  console.log('Valor de TASKID', taskId)
   if (req.method === 'PUT') {
     const { title, description, completed } = req.body
 
