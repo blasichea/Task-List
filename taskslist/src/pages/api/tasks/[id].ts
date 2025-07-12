@@ -11,9 +11,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const taskId = parseInt(id)
-  console.log('Valor de TASKID', taskId)
   if (req.method === 'PUT') {
     const { title, description, completed } = req.body
+    if (!title || typeof title !== 'string' || title.trim() === '') {
+      return res.status(400).json({ error: 'Título inválido'})
+    }
+
+    if (title.length > 100) {
+      return res.status(400).json({ error: 'Máximo 100 caracteres'})
+    }
+
+    if (!description 
+      || typeof description !== 'string' 
+      || description.trim() === '') {
+      return res.status(400).json({ error: 'Descripción inválida'})
+    }
+
+    if (description.length > 500) {
+      return res.status(400).json({ error: 'Máximo 500 caracteres'})
+    }
 
     try {
       const updatedTask = await prisma.task.update({

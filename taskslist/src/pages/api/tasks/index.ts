@@ -17,12 +17,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'POST') {
     const { title, description } = req.body
-    if (!title || typeof title !== 'string') {
+    if (!title || typeof title !== 'string' || title.trim() === '') {
       return res.status(400).json({ error: 'Título inválido'})
     }
 
-    if (!description || typeof description !== 'string') {
+    if (title.length > 100) {
+      return res.status(400).json({ error: 'Máximo 100 caracteres'})
+    }
+
+    if (!description 
+      || typeof description !== 'string' 
+      || description.trim() === '') {
       return res.status(400).json({ error: 'Descripción inválida'})
+    }
+
+    if (description.length > 500) {
+      return res.status(400).json({ error: 'Máximo 500 caracteres'})
     }
 
     try {
