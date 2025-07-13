@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import TaskItem, { Task } from '@/components/TaskItem'
+import TaskItem from '@/components/TaskItem'
+import { Task } from '@/types/task'
 import { useRouter } from 'next/router'
 import { FiPlus, FiSearch, FiFilter } from 'react-icons/fi'
 

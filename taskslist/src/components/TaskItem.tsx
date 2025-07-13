@@ -1,13 +1,7 @@
 import { useState } from 'react'
 import { FiEdit2, FiTrash2 } from 'react-icons/fi'
 import TaskModal from '@/components/TaskModal'
-
-export type Task = {
-  id: number
-  title: string
-  description: string
-  completed: boolean
-}
+import { Task } from '@/types/task'
 
 type Props = {
   task: Task

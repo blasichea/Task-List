@@ -1,12 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getServerSession(req, res, authOptions)
+  
+  if (!session || !session.user?.id) {
+    return res.status(401).json({ error: 'No autenticado' })
+  }
+
+  const userId = parseInt(session.user.id)
+
   if (req.method === 'GET') {
     try {
-      const tasks = await prisma.task.findMany({ orderBy: { createdAt: 'desc' } })
+      const tasks = await prisma.task.findMany({
+        where: {userId},
+        orderBy: { createdAt: 'desc' }
+      })
+
       return res.status(200).json(tasks)
 
     } catch (error) {
@@ -37,7 +51,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       const task = await prisma.task.create({
-        data: { title, description },
+        data: { 
+          title,
+          description,
+          userId 
+        }
       })
       return res.status(201).json(task)
       

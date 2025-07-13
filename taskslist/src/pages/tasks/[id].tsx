@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import TaskForm from '@/components/TaskForm'
-import { Task } from '@/components/TaskItem'
+import { Task } from '@/types/task'
 
 export default function EditTaskPage() {
   const router = useRouter()

@@ -41,7 +41,7 @@ export default function TaskForm({ initialData, isEdit=false, taskId }: Props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({title, description, completed}),
       })
-      router.push('/')
+      router.push('/tasks')
       
     } catch (error) {
       console.error('Error obteniendo datos:', error);
@@ -123,7 +123,7 @@ export default function TaskForm({ initialData, isEdit=false, taskId }: Props) {
       <div className="flex justify-between mt-4">
         <button
           type='button'
-          onClick={() => router.push('/')}
+          onClick={() => router.push('/tasks')}
           className="bg-red-600 hover:bg-red-700 text-white font-semibold 
                     px-4 py-2 rounded shadow transition"
         >

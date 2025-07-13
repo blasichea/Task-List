@@ -1,5 +1,5 @@
-import TaskList from '@/components/TaskList'
+import LoginPage from '@/pages/auth/login'
 
 export default function HomePage() {
-  return <TaskList />
+  return <LoginPage />
 }

@@ -1,4 +1,4 @@
-import { Task } from '@/components/TaskItem'
+import { Task } from '@/types/task'
 import { FiX, FiEdit2, FiTrash2 } from 'react-icons/fi'
 
 type Props = {
