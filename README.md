@@ -67,3 +67,7 @@ Hay una versión de la app alojada en Vercel con base de datos MySQL alojada en 
 https://taskslist-gir7l78kk-blasicheas-projects.vercel.app/
 
 ***Tener en cuenta que los servicios son gratuitos y pueden tener demoras***
+
+## Versión con usuarios
+
+En la rama **feature/users** hay una versión que soporta usuarios, registro, login, tareas propias
